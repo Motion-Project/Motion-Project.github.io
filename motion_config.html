@@ -9,11 +9,11 @@
 </head>
 <body style="margin-left:15%;">
   <ul class="nav-button">
-    <li class="nav-button"><a href="motion_support.html">Support</a></li>
-    <li class="nav-button"><a href="motion_news.html">News</a></li>
-    <li class="nav-button"><a href="motion_guide.html">Documentation</a></li>
-    <li class="nav-button"><a href="motion_download.html">Download</a></li>
-    <li class="nav-button"><a href="index.html">Home</a></li>
+    <li class="nav-button"><a href="https://motion-project.github.io/motion_support.html">Support</a></li>
+    <li class="nav-button"><a href="https://motion-project.github.io/motion_news.html">News</a></li>
+    <li class="nav-button"><a href="https://motion-project.github.io/motion_guide.html">Documentation</a></li>
+    <li class="nav-button"><a href="https://motion-project.github.io/motion_download.html">Download</a></li>
+    <li class="nav-button"><a href="https://motion-project.github.io/index.html">Home</a></li>
     <li class="nav-button" style="float: left;"> <img src="motion.gif" width="125" height="50"> </li>
   </ul>
   <section class="page-header">
@@ -23,29 +23,82 @@
   </section>
 
   <section class="vertical-menu">
-    <a href="#Basic_Setup"> The Basic Setup </a>
-    <a href="#Command_Line_Options"> Command Line Options </a>
-    <a href="#The_Config_Files"> The Configuration Files </a>
-    <a href="#Signals_Sent"> Signals (sent with e.g. kill command) </a>
-    <a href="#Configuration_OptionsAlpha"> Listed alphabetically with mapping of old option names to current names </a>
-    <a href="#Configuration_OptionsTopic"> Listed by topic </a>
-    <a href="#Configuration_OptionsDetail"> Detail descriptions of each option</a>
-    <a href="#conversion_specifiers"> Conversion Specifiers</a>
-    <a href="#Options_System_Processing"> System Processing</a>
-    <a href="#Options_Video4Linux_Devices"> Video4Linux Devices</a>
-    <a href="#Options_Network_Cameras"> Network Cameras</a>
-    <a href="#Options_Raspi_Cameras"> Raspberry Cameras</a>
-    <a href="#Options_Image_Processing"> Image Processing</a>
-    <a href="#Options_Motion_Detection"> Motion Detection</a>
-    <a href="#Options_Scripts"> Script Execution</a>
-    <a href="#Options_Output_General"> General Output Options</a>
-    <a href="#Options_Pictures"> Picture Output</a>
-    <a href="#Options_Movies"> Movie Output</a>
-    <a href="#Options_Pipe"> Pipe Output</a>
-    <a href="#Options_Stream_Webcontrol"> Stream and Webcontrol</a>
-    <a href="#Options_Database"> Database Options</a>
-    <a href="#Options_Tracking"> Tracking Camera Options</a>
+    <button class="accordian">Basic Setup</button>
+      <div class="panel">
+        <a href="#top">General</a>
+        <a href="#Basic_Setup_V4L2">V4L2 Devices</a>
+        <a href="#Basic_Setup_Network">Network Cameras</a>
+        <a href="#Basic_Setup_PiCam">Pi Camera</a>
+        <a href="#Basic_Setup_Composite">Composite Cards</a>
+        <a href="#Basic_Setup_Static">Static Files</a>
+      </div>
+    <button class="accordian">Commands/Files</button>
+      <div class="panel">
+        <a href="#Command_Line_Options">Command Line</a>
+        <a href="#The_Config_Files">Configuration Files </a>
+        <a href="#Signals_Sent">Signals</a>
+      </div>
+    <a href="#Configuration_OptionsAlpha">Options-Alpha</a>
+    <a href="#Configuration_OptionsTopic">Options-Topic</a>
+    <button class="accordian">Options-General</a></button>
+      <div class="panel">
+        <a href="#OptTopic_System_Processing">System Processing</a>
+        <a href="#conversion_specifiers">Conversion Specifiers</a>
+      </div>
+    <button class="accordian">Options-Cameras</a></button>
+      <div class="panel">
+        <a href="#OptTopic_Video4Linux_Devices">Video4Linux Devices</a>
+        <a href="#OptTopic_Network_Cameras">Network Cameras</a>
+        <a href="#OptTopic_Raspi_Cameras">Pi Cameras</a>
+      </div>
+    <button class="accordian">Options-Processing/Scripts</a></button>
+      <div class="panel">
+        <a href="#OptTopic_Image_Processing">Image Processing</a>
+        <a href="#OptTopic_Motion_Detection">Motion Detection</a>
+        <a href="#OptTopic_Scripts">Script Execution</a>
+      </div>
+    <button class="accordian">Options-Output</a></button>
+      <div class="panel">
+        <a href="#OptTopic_Output_General">General</a>
+        <a href="#OptTopic_Pictures">Pictures</a>
+        <a href="#OptTopic_Movies">Movies</a>
+      </div>
+    <button class="accordian">Options-Pipe/Steams</a></button>
+      <div class="panel">
+        <a href="#OptTopic_Pipe">Pipe Output</a>
+        <a href="#OptTopic_Stream_Webcontrol">Stream/Webcontrol</a>
+      </div>
+    <button class="accordian">Options-Database/Tracking</a></button>
+      <div class="panel">
+        <a href="#OptTopic_Database">Database Options</a>
+        <a href="#OptTopic_Tracking">Tracking Options</a>
+      </div>
+    <script>
+      var acc = document.getElementsByClassName("accordian");
+      var i;
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          var fnodes = document.getElementsByClassName("accordian");
+          var indx;
+          for (indx = 0; indx < fnodes.length; indx++){
+            if (this.isSameNode(fnodes[indx])) {
+              this.classList.toggle("active");
+              var panel = this.nextElementSibling;
+              if (panel.style.maxHeight){
+                panel.style.maxHeight = null;
+              } else {
+                panel.style.maxHeight = (panel.scrollHeight+50) + "px";
+              }
+            } else {
+              var panel = fnodes[indx].nextElementSibling;
+              panel.style.maxHeight = null;
+            }
+          }
+        });
+      }
+    </script>
   </section>
+
 
   <section class="main-content" style="padding:0.5em 0.1em;height:1000px;font-size: 0.90em;">
 
@@ -54,6 +107,7 @@
       <p></p>
       Before you can start using Motion you need to know some basics about your camera(s).
       <p></p>
+      <a name="Basic_Setup_V4L2"></a>
       For video4linux devices, the camera must be installed per the requirements of the camera.  It is
       out of the scope of this document to tell you how to do this and it depends on which type of camera.  Once
       the camera is installed it will have the device name(s) of /dev/video0, /dev/video1, /dev/video2...
@@ -76,6 +130,7 @@
       the option <code><a href="#input" >input</a> </code> must be set to the value -1 for USB cameras.
       <p></p>
 
+      <a name="Basic_Setup_Network"></a>
       <strong>Network cameras</strong> are set up via the
       <code><strong> <a href="#netcam_url" >netcam_url</a> </code></strong> parameter.
       The latest versions of Motion support rtsp format which many cameras now stream.
@@ -86,6 +141,7 @@
       for additional options.
       <p></p>
 
+      <a name="Basic_Setup_PiCam"></a>
       <strong>Raspberry Pi cameras</strong> can be set up two different ways.  If Motion is installed by using the
       apt packages (e.g. apt-get install motion), then the camera must be set up using the bcm2835-v4l2 module which creates
       a v4l2 device for the camera.  Users will need to install this module using the
@@ -96,6 +152,7 @@
       the bcm2835-v4l2 module.  <strong><code>When Motion is installed via apt, the mmalcam option is not available.</code></strong>
       <p></p>
 
+      <a name="Basic_Setup_Composite"></a>
       <strong>Composite video cards</strong> are normally made with a chip called BT878 (older cards have a BT848). They
       all use the Linux driver called 'bttv'.
       <p></p>
@@ -125,6 +182,7 @@
       If your camera is a PAL black and white you may get a better result with norm=3 (PAL no colour).
       <p></p>
 
+      <a name="Basic_Setup_Static"></a>
       <strong>Static files</strong> can also be processed with a bit of additional setup via a v4l2loopback device.
       Install the loopback software as described in the
       <code><strong><a href="#Options_Pipe" >Output - Pipe Options</a> </code></strong>
@@ -1237,7 +1295,8 @@
       <p></p>
       <p></p>
 
-      <a href="#Options_System_Processing" >System Processing</a>
+      <a name="OptTopic_System_Processing" ></a>
+      <a href="#OptDetail_System_Processing" >System Processing-General Info</a>
       <ul>
         <table border="1" class="fixed" >
             <colgroup>
@@ -1270,7 +1329,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Video4Linux_Devices" >Video4Linux Devices</a>
+      <a name="OptTopic_Video4Linux_Devices" ></a>
+      <a href="#OptDetail_Video4Linux_Devices" >Video4Linux Devices-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1310,7 +1370,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Network_Cameras" >Network Cameras</a>
+      <a name="OptTopic_Network_Cameras" ></a>
+      <a href="#OptDetail_Network_Cameras" >Network Cameras-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1339,7 +1400,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Raspi_Cameras" >Raspberry Pi Camera</a>
+      <a name="OptTopic_Raspi_Cameras" ></a>
+      <a href="#OptDetail_Raspi_Cameras" >Raspberry Pi Camera-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1360,7 +1422,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Image_Processing" >Image_Processing</a>
+      <a name="OptTopic_Image_Processing" ></a>
+      <a href="#OptDetail_Image_Processing" >Image Processing-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1400,7 +1463,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Motion_Detection" >Motion Detection</a>
+      <a name="OptTopic_Motion_Detection" ></a>
+      <a href="#OptDetail_Motion_Detection" >Motion Detection-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1436,7 +1500,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Scripts" >Script Execution</a>
+      <a name="OptTopic_Scripts" ></a>
+      <a href="#OptDetail_Scripts" >Script Execution-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1470,7 +1535,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Output_General" >Output - General</a>
+      <a name="OptTopic_Output_General" ></a>
+      <a href="#OptDetail_Output_General" >Output-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1494,7 +1560,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Pictures" >Output - Picture </a>
+      <a name="OptTopic_Pictures" ></a>
+      <a href="#OptDetail_Pictures" >Pictures-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1524,7 +1591,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Movies" >Output - Movie</a>
+      <a name="OptTopic_Movies" ></a>
+      <a href="#OptDetail_Movies" >Movies-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1563,7 +1631,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Pipe" >Output - Pipe</a>
+      <a name="OptTopic_Pipe" ></a>
+      <a href="#OptDetail_Pipe" >Pipes-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1587,7 +1656,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Stream_Webcontrol" >Stream and Webcontrol</a>
+      <a name="OptTopic_Stream_Webcontrol" ></a>
+      <a href="#OptDetail_Stream_Webcontrol" >Stream and Webcontrol-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1633,7 +1703,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Database" >Database</a>
+      <a name="OptTopic_Database" ></a>
+      <a href="#OptDetail_Database" >Database-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1672,7 +1743,8 @@
         <p></p>
       </ul>
 
-      <a href="#Options_Tracking" >Tracking</a>
+      <a name="OptTopic_Tracking" ></a>
+      <a href="#OptDetail_Tracking" >Tracking-General Info</a>
       <ul>
         <table border="1" class="fixed" >
           <colgroup>
@@ -1819,7 +1891,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_System_Processing"></a>System Processing</h3>
+      <h3><a name="OptDetail_System_Processing"></a>System Processing</h3>
       <ul>
         <p></p>
         <h3><a name="daemon"></a> daemon </h3>
@@ -1997,7 +2069,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Video4Linux_Devices"></a>Video4Linux Device</h3>
+      <h3><a name="OptDetail_Video4Linux_Devices"></a>Video4Linux Device</h3>
       <ul>
         <p></p>
         Please refer to the <a href="#Basic_Setup">Basic Setup</a> section of this guide for an additional discussion
@@ -2393,7 +2465,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Network_Cameras"></a>Network Cameras</h3>
+      <h3><a name="OptDetail_Network_Cameras"></a>Network Cameras</h3>
       <ul>
         <p></p>
         Motion can connect to certain network cameras.  Please refer to the <a href="#Basic_Setup">Basic Setup</a> section
@@ -2617,7 +2689,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Raspi_Cameras"></a>Raspberry Pi Camera</h3>
+      <h3><a name="OptDetail_Raspi_Cameras"></a>Raspberry Pi Camera</h3>
       <ul>
         <p></p>
         Motion can use the Raspberry Pi camera when connected and Motion is compiled and installed with the
@@ -2670,7 +2742,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Image_Processing"></a> Image Processing</h3>
+      <h3><a name="OptDetail_Image_Processing"></a> Image Processing</h3>
       <ul>
         <p></p>
         <h3><a name="rotate"></a> rotate </h3>
@@ -3044,7 +3116,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Motion_Detection"></a>Motion Detection</h3>
+      <h3><a name="OptDetail_Motion_Detection"></a>Motion Detection</h3>
       <ul>
         <p></p>
         <h3><a name="emulate_motion"></a> emulate_motion </h3>
@@ -3369,7 +3441,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Scripts"></a> Script Execution </h3>
+      <h3><a name="OptDetail_Scripts"></a> Script Execution </h3>
       <ul>
         <p></p>
         Motion can execute external commands based on the motion detection and related events.
@@ -3571,7 +3643,7 @@
 
       </ul>
 
-      <h3><a name="Options_Output_General"></a>Output - General Options</h3>
+      <h3><a name="OptDetail_Output_General"></a>Output - General Options</h3>
       <ul>
         <p></p>
         <h3><a name="quiet"></a> quiet </h3>
@@ -3666,7 +3738,7 @@
 
       </ul>
 
-      <h3><a name="Options_Pictures"></a>Output - Picture Options </h3>
+      <h3><a name="OptDetail_Pictures"></a>Output - Picture Options </h3>
       <ul>
         <p></p>
         Motion can output different types of pictures.  The normal picture is indicated below.
@@ -3821,7 +3893,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Movies"></a>Output - Movie Options</h3>
+      <h3><a name="OptDetail_Movies"></a>Output - Movie Options</h3>
       <ul>
         <p></p>
         <h3><a name="max_movie_time"></a> max_movie_time </h3>
@@ -4045,7 +4117,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Pipe"></a>Output - Pipe Options</h3>
+      <h3><a name="OptDetail_Pipe"></a>Output - Pipe Options</h3>
       <ul>
         <p></p>
         There are two pipe variations available with Motion.  The first option is a v4l2loopback device.
@@ -4163,7 +4235,7 @@
 
       </ul>
 
-      <h3><a name="Options_Stream_Webcontrol"></a> Stream and Webcontrol</a> </h3>
+      <h3><a name="OptDetail_Stream_Webcontrol"></a> Stream and Webcontrol</a> </h3>
       <ul>
         Motion has simple webcam server built in. The server can be configured to
         stream both the images as well allow for a very basic http control of Motion parameters.
@@ -4539,7 +4611,7 @@
 
       </ul>
 
-      <h3><a name="Options_Database"></a>Database</h3>
+      <h3><a name="OptDetail_Database"></a>Database</h3>
       <ul>
         Motion can be compiled with MySQL, PostgreSQL or SQLite3 database support.
         When enabled Motion can be configured to add a record to a table in the database
@@ -4745,7 +4817,7 @@
         <p></p>
       </ul>
 
-      <h3><a name="Options_Tracking"></a>Tracking</h3>
+      <h3><a name="OptDetail_Tracking"></a>Tracking</h3>
       <ul>
         <p></p>
         This is <strike>still</strike> permanently at the experimental stage.
