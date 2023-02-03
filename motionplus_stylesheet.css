@@ -10,7 +10,7 @@ body {
   line-height: 1.5;
   color: #606c71; }
 a {
-  color: #1e6bb8;
+  color: #0f7040;
   text-decoration: none;}
 a:hover {
     text-decoration: underline; }
@@ -34,8 +34,8 @@ a:hover {
 .page-header {
   color: #fff;
   text-align: center;
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
+  background-color: #155799;
+  background-image: linear-gradient(120deg, #159957, #155799); }
 .page-header h1 {
   margin-bottom: 0.1em;
   margin-top: 0.1em;}
@@ -177,17 +177,6 @@ a:hover {
     background-color: #555;
     color: white;
 }
-
-.tblcomp td {
-  border: 1px solid grey;
-  text-align: center;
-}
-
-.tblcomp th {
-  border: 1px solid gray;
-  text-align: center;
-}
-
 @media screen and (min-width: 48em) {
   .topnav a {
     float: right;
@@ -264,8 +253,8 @@ a:hover {
 
 .subnav {
     overflow: hidden;
-    background-color: #159957;
-    background-image: linear-gradient(120deg, #155799, #159957);
+    background-color: #155799;
+    background-image: linear-gradient(120deg, #159957, #155799);
     border-top: 2px solid black;
 }
 .subnav a {
@@ -446,19 +435,18 @@ a:hover {
   .tbldetail table,.tbldetail thead,.tbldetail tbody,.tbldetail th,.tbldetail td,.tbldetail tr,
   .tblconvr  table,.tblconvr  thead,.tblconvr  tbody,.tblconvr  th,.tblconvr  td,.tblconvr  tr,
   .tblpaltte table,.tblpaltte thead,.tblpaltte tbody,.tblpaltte th,.tblpaltte td,.tblpaltte tr,
-  .tblcomp   table,.tblcomp   thead,.tblcomp   tbody,.tblcomp   th,.tblcopm   td,.tblcomp   tr,
   .tblconfig table,.tblconfig thead,.tblconfig tbody,.tblconfig th,.tblconfig td,.tblconfig tr
    {
     display: block;
   }
   .tblsignal thead tr, .tblalpha  thead tr, .tbldetail thead tr, .tblconvr  thead tr,
-  .tblpaltte thead tr, .tblconfig thead tr, .tblcomp thead tr  {
+  .tblpaltte thead tr, .tblconfig thead tr  {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
-  .tblsignal tr, .tblalpha  tr, .tbldetail tr, .tblconvr  tr,
-  .tblpaltte tr, .tblconfig tr, .tblcomp   tr {
+  .tblsignal tr, .tblalpha  tr, .tbldetail tr, .tblconvr  tr, 
+  .tblpaltte tr, .tblconfig tr {
     border: 1px solid #ccc;
   }
   .tblsignal td, .tbldetail td, .tblconvr  td, .tblpaltte td {
@@ -468,8 +456,8 @@ a:hover {
     padding-left: 5%;
     height: 2.8em;
   }
-  .tblsignal td:before, .tbldetail td:before, .tblconvr  td:before,
-  .tblpaltte td:before, .tblconfig td:before, .tblcomp   td:before {
+  .tblsignal td:before, .tbldetail td:before, .tblconvr  td:before, 
+  .tblpaltte td:before, .tblconfig td:before {
     position: absolute;
     top: 6px;
     left: 6px;
