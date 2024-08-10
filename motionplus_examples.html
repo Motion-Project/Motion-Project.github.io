@@ -213,8 +213,52 @@
           <p></p>
 
           <div>
-            <i><h4>pgsql</h4></i>
-            ToDo
+            <i><h4>postgresql</h4></i>
+            The following describes the process to set up a PostgreSQL database.
+            If your machine already has a PostgreSQL database,
+            adjust as appropriate to the situation that exists on your computer.
+            Those with more experience with PostgreSQL are
+            invited to provide suggestions and corrections to these steps.
+            <small><small><code>
+            <ul>
+            sudo apt install postgresql postgresql-contrib
+            <br>sudo -u postgres psql
+              <ul>
+              CREATE ROLE 'your_username_here' LOGIN PASSWORD 'YourPasswordHere';
+              <br>CREATE DATABASE motionplus WITH OWNER = your_username_here;
+              <br>GRANT ALL PRIVILEGES ON DATABASE motionplus TO your_username_here;
+              <br>\quit
+              </ul>
+            </code></small></small>
+            </ul>
+
+            Once the database is set up, check the status via systemctl.
+            <ul>
+            <small><small><code>
+            sudo systemctl status postgresql
+            </code></small></small>
+            </ul>
+
+            Check the login information via the following command line. (note that the
+            username only seems to accept lowercase)
+            <ul>
+            <small><small><code>
+            psql -h localhost -d motionplus -U your_username_here -p 5432
+            </code></small></small>
+
+            Specify the following in the MotionPlus configuration parameters.
+            <ul>
+            <small><small><code>
+            database_type postgresql
+            <br>database_dbname motionplus
+            <br>database_host localhost
+            <br>database_port 5432
+            <br>database_user your_username_here
+            <br>database_password YourPasswordHere
+            </code></small></small>
+            </ul>
+
+          </div>
           <p></p>
 
 
@@ -232,27 +276,58 @@
           <li><code>{IP}:{port0}/0/status.json</code> JSON object with information about status of all cameras</li>
           <li><code>{IP}:{port0}/0/movies.json</code> JSON object with information about all movies</li>
         </ul>
-        The following mjpg pages are available via the webcontrol. (Update automatically)
+        The following mjpg streams are available via the webcontrol. (Update automatically).  Specify {camid}
+        as 0 to obtain a consolidated mjpg stream of all cameras.
         <ul>
           <li><code>{IP}:{port0}/{camid}/mjpg</code> Primary stream for the camera updated as a mjpg</li>
           <li><code>{IP}:{port0}/{camid}/mjpg/substream</code> Substream for the camera updated as a mjpg</li>
           <li><code>{IP}:{port0}/{camid}/mjpg/motion</code> Stream of motion images for the camera as a mjpg</li>
           <li><code>{IP}:{port0}/{camid}/mjpg/source</code> Source image stream of the camera as a mjpg</li>
+          <li><code>{IP}:{port0}/{camid}/mjpg/secondary</code> Image from secondary detection stream (if active) as a mjpg</li>
         </ul>
-        The following mpegts pages are available via the webcontrol. (Update automatically)
+        The following mpegts streams are available via the webcontrol. (Update automatically) Specify {camid}
+        as 0 to obtain a consolidated mpegts stream of all cameras.
         <ul>
           <li><code>{IP}:{port0}/{camid}/mpegts</code> Primary stream for the camera updated as a mpeg transport stream</li>
           <li><code>{IP}:{port0}/{camid}/mpegts/substream</code> Substream for the camera updated as a mpeg transport stream</li>
           <li><code>{IP}:{port0}/{camid}/mpegts/motion</code> Stream of motion images for the camera as a mpeg transport stream</li>
           <li><code>{IP}:{port0}/{camid}/mpegts/source</code> Source image stream of the camera as a mpeg transport stream</li>
+          <li><code>{IP}:{port0}/{camid}/mpegts/secondary</code> Image from secondary detection stream (if active) as a mpeg transport stream</li>
         </ul>
-
-        The following static pages are available via the webcontrol. (Update manually)
+        The following static pages are available via the webcontrol. (Update manually) Specify {camid}
+        as 0 to obtain a consolidated image of all cameras.
         <ul>
           <li><code>{IP}:{port0}/{camid}/static</code> Primary image for the camera</li>
           <li><code>{IP}:{port0}/{camid}/static/substream</code> Substream image for the camera</li>
           <li><code>{IP}:{port0}/{camid}/static/motion</code> Motion image for the camera</li>
           <li><code>{IP}:{port0}/{camid}/static/source</code> Source image of the camera</li>
+          <li><code>{IP}:{port0}/{camid}/static/secondary</code> Image from secondary detection stream (if active)</li>
+        </ul>
+        The following actions can be executed by sending post request.
+        <ul>
+          <li><code>eventstart</code>Start an event</li>
+          <li><code>eventend</code>End an event</li>
+          <li><code>snapshot</code>Invoke a snapshot</li>
+          <li><code>pause</code>Pause motion detection</li>
+          <li><code>unpause</code>Unpause motion detection</li>
+          <li><code>restart</code>Restart camera</li>
+          <li><code>stop</code>Stop camera</li>
+          <li><code>config_write</code>Write out the configuration to file.  User account running Motionplus must have write access to directory</li>
+          <li><code>camera_add</code>Add a camera</li>
+          <li><code>camera_delete</code>Delete camera</li>
+          <li><code>config</code>Set configuration item</li>
+          <li><code>action_user</code>Execute the on_action_user command.  Provide as needed the additional parameter of action_user</li>
+          <li><code>pan_left</code>Execute the ptz_pan_left command</li>
+          <li><code>pan_right</code>Execute the ptz_pan_left command</li>
+          <li><code>tilt_up</code>Execute the ptz_tilt_up</li>
+          <li><code>tilt_down</code>Execute the ptz_tilt_down</li>
+          <li><code>zoom_in</code>Execute ptz_zoom_in command</li>
+          <li><code>zoom_out</code>Execute the ptz_zoom_out command</li>
+        </ul>
+        Sample commands
+        <ul>
+          <li><code>curl -s -o -X POST {IP}:{port0} --data "camid={camid}" --data "command=eventstart"  1>/dev/null</code></li>
+          <li><code>curl -s -o -X POST {IP}:{port0} --data "camid={camid}" --data "command=config" --data "framerate=12"  1>/dev/null</code></li>
         </ul>
       </ul>
 
