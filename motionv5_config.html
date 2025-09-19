@@ -2,10 +2,10 @@
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
-  <link href="motionplus.png" rel="icon" type="image/png">
-  <title>MotionPlus</title>
+  <link href="motion.png" rel="icon" type="image/png">
+  <title>Motion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="motionplus_stylesheet.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="motionv5_stylesheet.css" media="screen">
   <script>
     function fnc_topnav() {
       var x = document.getElementById("id_topnav");
@@ -28,7 +28,7 @@
 
 <body>
    <div class="topnav" id="id_topnav">
-      <img class="logoimg" src="motionplus.gif">
+      <img class="logoimg" src="motion.gif">
 
       <a class="topnav-d" href="https://motion-project.github.io/motion_support.html">Support</a>
       <a class="topnav-d" href="https://motion-project.github.io/motion_news.html" >News</a>
@@ -671,11 +671,11 @@
                <td bgcolor="#edf4f9" >%{fps}</a> </td>
                <td bgcolor="#edf4f9" >current frames per second</a> </td>
                <td bgcolor="#edf4f9" >%{host}</a> </td>
-               <td bgcolor="#edf4f9" >name of computer running MotionPlus</a> </td>
+               <td bgcolor="#edf4f9" >name of computer running Motion</a> </td>
              </tr>
              <tr>
                <td bgcolor="#edf4f9" >%{ver}</a> </td>
-               <td bgcolor="#edf4f9" >version of MotionPlus</a> </td>
+               <td bgcolor="#edf4f9" >version of Motion</a> </td>
                <td bgcolor="#edf4f9" >%{trig_nbr}</a> </td>
                <td bgcolor="#edf4f9" >sound alert number that was triggered</a> </td>
                <td bgcolor="#edf4f9" >%{trig_nm}</a> </td>
@@ -701,7 +701,7 @@
         <h3><a name="daemon"></a> daemon </h3>
         <ul>
           <li> Values: on, off | Default: off</li>
-          Run in daemon mode.  When running MotionPlus under systemd specify as off.
+          Run in daemon mode.  When running Motion under systemd specify as off.
         </ul>
         <p></p>
 
@@ -794,7 +794,7 @@
         <h3><a name="watchdog_tmo"></a>watchdog_tmo</h3>
         <ul>
           <li> Values: Integer | Default: 30 </li>
-          Number of seconds that elapse before a camera is deemed to be unresponsive and MotionPlus triggers
+          Number of seconds that elapse before a camera is deemed to be unresponsive and Motion triggers
           a watchdog timeout and begins to force the camera to shut down.
         </ul>
         <p></p>
@@ -802,7 +802,7 @@
         <h3><a name="watchdog_kill"></a>watchdog_kill</h3>
         <ul>
           <li> Values: Integer | Default: 10 </li>
-          Number of seconds that elapse after the watchdog_tmo that MotionPlus waits until the
+          Number of seconds that elapse after the watchdog_tmo that Motion waits until the
           kill processes begin to force the camera to shut down.
         </ul>
         <p></p>
@@ -836,7 +836,7 @@
        <ul>
           <p></p>
           The configuration parameters for v4l2_params are specified by name or ID.  They may also be
-          enclosed in double quotes. Review the MotionPlus log with log_level 8 to see the options that
+          enclosed in double quotes. Review the motion log with log_level 8 to see the options that
           are applicable to the device.  The following is a sample output from the log and
           examples of how to specify the parameters
           <p></p>
@@ -850,7 +850,7 @@
           </ul>
           </div>
           <p></p>
-          Additional MotionPlus specific options for v4l2_params are listed below.
+          Additional motion specific options for v4l2_params are listed below.
         </ul>
 
         <ul>
@@ -858,7 +858,7 @@
         <div>
           <ul>
             <li> Values: 0 - 20 | Default: 17</li>
-            Preferred color palette for MotionPlus to use for the device.  See table below for the meaning of
+            Preferred color palette for motion to use for the device.  See table below for the meaning of
             each parameter number value.
             <div class="tblpaltte">
             <table border="1" class="fixed" >
@@ -1244,16 +1244,16 @@
         </ul>
         <ul>
           <p></p>
-          MotionPlus uses the ffmpeg libraries to process network cameras.  This option is
+          motion uses the ffmpeg libraries to process network cameras.  This option is
           a comma separated list of the ffmpeg options for the camera.  In addition
-          to the ffmpeg options, MotionPlus includes the following additional options.
+          to the ffmpeg options, motion includes the following additional options.
           <p></p>
 
           <div>
             <i><h4>capture_rate</h4></i>
             The number of frames per second to capture from the camera. This option should be slightly higher than
             the FPS that the camera is sending image.  Users can also specify the capture_rate as
-            <code>pts</code>.  When using <code>pts</code> as the capture_rate MotionPlus will sync the timing
+            <code>pts</code>.  When using <code>pts</code> as the capture_rate motion will sync the timing
             of the capture to match between the clock and the presentation time stamps sent from the camera.
           </div>
           <p></p>
@@ -1294,16 +1294,16 @@
         </ul>
         <ul>
           <p></p>
-          MotionPlus uses the ffmpeg libraries to process network cameras.  This option is
+          motion uses the ffmpeg libraries to process network cameras.  This option is
           a comma separated list of the ffmpeg options for the stream specified by netcam_high_url.  In addition
-          to the ffmpeg options, MotionPlus includes the following additional options.
+          to the ffmpeg options, motion includes the following additional options.
           <p></p>
 
           <div>
             <i><h4>capture_rate</h4></i>
             The number of frames per second to capture from the camera. This option should be slightly higher than
             the FPS that the camera is sending images.  Users can also specify the capture_rate as
-            <code>pts</code>.  When using <code>pts</code> as the capture_rate MotionPlus will sync the timing
+            <code>pts</code>.  When using <code>pts</code> as the capture_rate motion will sync the timing
             of the capture to match between the clock and the presentation time stamps sent from the camera.
           </div>
           <p></p>
@@ -1497,7 +1497,7 @@
        <ul>
           <p></p>
           This option is a comma separated list of the secondary detection model options.  In addition to the
-          options for each of the models, MotionPlus includes the following additional options.
+          options for each of the models, motion includes the following additional options.
           <p></p>
 
           <div>
@@ -1934,9 +1934,9 @@
           <li> Values: mpg, mpeg4 | Default: mpg</li>
           Container to be used by timelapse video.
           <ul>
-            <li>mpg - Creates mpg file with mpeg-2 encoding. If MotionPlus is shutdown and restarted, new
+            <li>mpg - Creates mpg file with mpeg-2 encoding. If motion is shutdown and restarted, new
             pictures will be appended to any previously created file with name indicated for timelapse.</li>
-            <li>mpeg4 - Creates avi file with the default encoding.  If MotionPlus is shutdown and restarted,
+            <li>mpeg4 - Creates avi file with the default encoding.  If motion is shutdown and restarted,
             new pictures will create a new file with the name indicated for timelapse.</li>
           </ul>
         </ul>
@@ -1973,12 +1973,12 @@
 
       <h3><a name="OptDetail_Webcontrol"></a>Web Control</a> </h3>
       <p></p>
-      These options must be placed in the motionplus.conf file and not in a camera config files.
+      These options must be placed in the motion.conf file and not in a camera config files.
       <ul>
         <h3><a name="webcontrol_port"></a> webcontrol_port </h3>
         <ul>
           <li>Values: 0 to 65535 | Default: 0 (disabled)</li>
-          The port number for the web based control of MotionPlus.
+          The port number for the web based control of motion.
         </ul>
         <p></p>
 
@@ -2001,7 +2001,7 @@
         <h3><a name="webcontrol_localhost"></a> webcontrol_localhost </h3>
         <ul>
           <li> Values: on, off | Default: on</li>
-          Restrict the webcontrol of MotionPlus to the localhost.
+          Restrict the webcontrol of motion to the localhost.
         </ul>
         <p></p>
 
@@ -2020,14 +2020,14 @@
             <li> 0: None - No configuration parameters or actions will be available.</li>
             <li> 1: Limited- A limited list of parameters will be available. </li>
             <li> 2: Advanced - The advanced list of parameters will be available.  These
-              typically require MotionPlus to be restarted to become effective.</li>
+              typically require motion to be restarted to become effective.</li>
             <li> 3: Restricted - User IDs, passwords and "on_" commands.</li>
           </ul>
           The default for this parameter is 0 (none) to enhance the security of the web interface.  The
           setting of the webcontrol_parms is not included on the web interface and this parameter
           can only be specified via the configuration file.
           <p></p>
-          Once MotionPlus has been configured, it is advised to complete the setup by setting
+          Once motion has been configured, it is advised to complete the setup by setting
           this value to zero.
         </ul>
         <p></p>
@@ -2222,7 +2222,7 @@
       </ul>
 
       <h3><a name="OptDetail_Database"></a>Database</h3>
-      Only one database can be used by MotionPlus at a time.  These options must be placed in the motionplus.conf
+      Only one database can be used by motion at a time.  These options must be placed in the motion.conf
       file and not in a camera config files.
       <ul>
         <h3><a name="database_type"></a> database_type </h3>
@@ -2582,7 +2582,7 @@
     <h2><a name="command_line_options"></a>  Command Line Options </h2>
     <ul>
       <p></p>
-      <code>motionplus [ -hbnsm ] [ -c config file path ] [ -d level ] [ -k level ] [ -p pid_file ] [ -l log_file ]</code>
+      <code>motion [ -hbnsm ] [ -c config file path ] [ -d level ] [ -k level ] [ -p pid_file ] [ -l log_file ]</code>
       <p></p>
       <ul>
         <li>-c : Full path and filename of config file.</li>
@@ -2603,16 +2603,16 @@
     <h2><a name="config_files"></a>  The Configuration Files </h2>
     <ul>
       <p></p>
-      MotionPlus will search for the configuration file called 'motionplus.conf' in the following order:
+      motion will search for the configuration file called 'motion.conf' in the following order:
       <p></p>
       <ol>
-        <li> Current directory where MotionPlus was invoked</li>
-        <li> The directory called '.motionplus' in the current users home directory</li>
+        <li> Current directory where motion was invoked</li>
+        <li> The directory called '.motion' in the current users home directory</li>
         <li> The directory defined by --sysconfdir=DIR during the configure step of installation. If this was
-          not defined, it will default to /etc/motionplus</li>
+          not defined, it will default to /etc/motion</li>
       </ol>
       <p></p>
-      The motionplus.conf file specifies parameters for the entire MotionPlus application and defaults for
+      The motion.conf file specifies parameters for the entire motion application and defaults for
       each camera.  Specifications that are unique to each camera are included in separate files.
       <p></p>
 
@@ -2622,7 +2622,7 @@
     <ul>
       <p></p>
         A signal can be sent from the command line by typing
-        e.g. <code>kill -s SIGHUP pid</code>, where the last parameter is the process ID for MotionPlus.
+        e.g. <code>kill -s SIGHUP pid</code>, where the last parameter is the process ID for motion.
       <p></p>
       <div class="tblsignal">
       <table border="1" class="fixed" >
@@ -2644,11 +2644,11 @@
           </tr>
           <tr>
             <td bgcolor="#edf4f9" word-wrap:break-word > SIGTERM </td>
-            <td bgcolor="#edf4f9" word-wrap:break-word > If needed MotionPlus will create an movie file of the last event and exit </td>
+            <td bgcolor="#edf4f9" word-wrap:break-word > If needed motion will create an movie file of the last event and exit </td>
           </tr>
           <tr>
             <td bgcolor="#edf4f9" word-wrap:break-word > SIGUSR1 </td>
-            <td bgcolor="#edf4f9" word-wrap:break-word > MotionPlus will create an movie file of the current event. </td>
+            <td bgcolor="#edf4f9" word-wrap:break-word > motion will create an movie file of the current event. </td>
           </tr>
         </tbody>
       </table>
